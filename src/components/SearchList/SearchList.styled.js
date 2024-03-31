@@ -26,7 +26,7 @@ export const MovieImg = styled.img`
 export const MovieText = styled.h2`
   text-align: center;
   padding: 5px;
-  /* margin: 0; */
+
 `;
 
 export const StyledLink = styled(Link)`

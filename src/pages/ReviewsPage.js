@@ -11,15 +11,12 @@ export default function ReviewsPage() {
     async function getMovies() {
       try {
         const response = await fetchMoviesReviews(params.movieId);
-        console.log(response.results);
         setMovieItem(response.results);
       } catch (error) {}
     }
 
     getMovies();
   }, [params.movieId]);
-
-  console.log(movieItem);
 
   return (
     <div>

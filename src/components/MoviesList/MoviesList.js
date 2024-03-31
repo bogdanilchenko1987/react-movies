@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import {
   MovieContainer,
   MovieImg,
@@ -7,6 +7,7 @@ import {
 } from './MovieList.styled';
 
 export const MoviesList = ({ movies }) => {
+  const location = useLocation();
   return (
     <MovieContainer>
       {movies.map(movie => (
@@ -14,6 +15,7 @@ export const MoviesList = ({ movies }) => {
           <Link
             style={{ textDecoration: 'none', color: 'black' }}
             to={`/movies/${movie.id}`}
+            state={{ from: location }}
           >
             <MovieImg
               src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`}

@@ -4,12 +4,11 @@ import {
   MovieImg,
   MovieItem,
   MovieText,
-  StyledLink,
 } from './SearchList.styled';
 
-export const SearchList = ({ submit, movie }) => {
+export const SearchList = ({ submit, movie, isLoading }) => {
   const location = useLocation();
-
+  const isListEmpty = Boolean(movie.length);
   return (
     <div>
       <form onSubmit={submit}>
@@ -22,18 +21,14 @@ export const SearchList = ({ submit, movie }) => {
         />
         <button type="submit">Search</button>
       </form>
-      {Boolean(movie.length) && (
-        <StyledLink to={'/movies'} state={{ from: location }}>
-          ⬅ Go back
-        </StyledLink>
-      )}
-
-      {Boolean(movie.length) && (
+      {isLoading && isListEmpty && <b>LOADING...</b>}
+      {isListEmpty && (
         <MovieContainer>
           {movie.map(item => (
             <MovieItem key={item.id}>
               <Link
                 to={`/movies/${item.id}`}
+                state={{ from: location }}
                 style={{ textDecoration: 'none', color: 'black' }}
               >
                 <MovieImg
@@ -52,9 +47,7 @@ export const SearchList = ({ submit, movie }) => {
         </MovieContainer>
       )}
 
-      {!Boolean(movie.length) && (
-        <p>No results found. Please type name on the movie</p>
-      )}
+      {!isListEmpty && <p>Please type name on the movie</p>}
     </div>
   );
 };

@@ -12,13 +12,15 @@ export default function CastPage() {
       try {
         const response = await fetchMoviesCredits(params.movieId);
         setMovieItem(response.cast);
-      } catch (error) {}
+      } catch (error) {
+        console.log(error)
+      }
     }
 
     getMovies();
   }, [params.movieId]);
 
-  console.log(movieItem);
+
 
   return (
     <div>

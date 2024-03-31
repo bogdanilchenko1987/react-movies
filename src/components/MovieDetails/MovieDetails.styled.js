@@ -30,7 +30,7 @@ export const StyledLink = styled(NavLink)`
 `;
 
 export const Img = styled.img`
-  width: 500px;
+  width: 400px;
   height: 500px;
   border-radius: 5px;
   margin-right: 10px;
@@ -39,8 +39,8 @@ export const StyledBackLink = styled(Link)`
   color: black;
   font-weight: 500;
   text-decoration: none;
-  margin-top: 10px;
-  display: block;
+  margin-bottom: 10px;
+  display: inline-block;
   &:hover,
   &:focus {
     color: #a19b19;

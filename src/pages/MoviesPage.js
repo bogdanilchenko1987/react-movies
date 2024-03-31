@@ -5,6 +5,7 @@ import { useSearchParams } from 'react-router-dom';
 
 export default function MoviesPage() {
   const [movie, setmovie] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [params, setParams] = useSearchParams();
 
   const movieName = params.get('query') ?? '';
@@ -12,7 +13,7 @@ export default function MoviesPage() {
   const handleSubmit = e => {
     e.preventDefault();
     const movieName = e.target.input.value;
-    params.set('query', movieName);
+    params.set('query', movieName.toLocaleLowerCase());
     setParams(params);
   };
 
@@ -23,10 +24,14 @@ export default function MoviesPage() {
   useEffect(() => {
     async function getMovies() {
       try {
+        setIsLoading(true);
         const response = await fetchMoviesByQuery(movieName);
-        console.log(response.results);
         setmovie(response.results);
-      } catch (error) {}
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsLoading(false);
+      }
     }
     getMovies();
   }, [movieName]);
@@ -34,6 +39,7 @@ export default function MoviesPage() {
   return (
     <div>
       <SearchList
+        isLoading={isLoading}
         movie={movie}
         submit={e => {
           handleSubmit(e);

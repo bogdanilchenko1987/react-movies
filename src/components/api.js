@@ -8,17 +8,6 @@ const END_POINT_MOVIES_BY_QUERY = 'search/movie';
 const END_POINT_MOVIES_BY_ID = 'movie/';
 
 export const fetchMovies = async () => {
-  //   const OPTIONS = new URLSearchParams({
-  //     key: API_KEY,
-  //     q: query,
-  //     image_type: 'photo',
-  //     orientation: 'horizontal',
-  //     page: page,
-  //     per_page: 12,
-  //   });
-  // const response = await axios.get(`${BASE_URL}?${OPTIONS.toString()}`);
-  // return response.data;
-
   const response = await axios.get(
     `${BASE_URL}${END_POINT_TRENDING}?api_key=${API_KEY}`
   );

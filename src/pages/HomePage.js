@@ -11,7 +11,9 @@ export default function HomePage() {
         const response = await fetchMovies();
         const moviesTranding = response.results;
         setMoviesItem(moviesTranding);
-      } catch (error) {}
+      } catch (error) {
+        console.log(error);
+      }
     }
 
     getMovies();

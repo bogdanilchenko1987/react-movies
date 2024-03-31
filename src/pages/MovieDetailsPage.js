@@ -1,43 +1,39 @@
 import { MovieDetails } from 'components/MovieDetails/MovieDetails';
 import { fetchMoviesById } from 'components/api';
-import { useEffect, useState } from 'react';
-import { Outlet, useParams } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
 
 export default function MovieDetailsPage() {
   const [movieItem, setMovieItem] = useState([]);
   const params = useParams();
-  // const location = useLocation();
-  // const backLinkHref = location.state?.from ?? '/movies';
-  // console.log(params.movieId);
+  const location = useLocation();
+  const ref = useRef(location);
+
+  const backLinkHref = ref.current.state?.from ?? '/movies';
 
   useEffect(() => {
     async function getMovies() {
       try {
         const response = await fetchMoviesById(params.movieId);
-        console.log(response);
         setMovieItem(response);
-      } catch (error) {}
+      } catch (error) {
+        console.log(error)
+      }
     }
 
     getMovies();
   }, [params.movieId]);
 
-  console.log(movieItem);
-
   return (
     <div>
-      {/* <Link
-        to={backLinkHref}
-        style={{
-          color: 'black',
-          fontWeight: '700',
-        }}
-      >
-        Back to Products
-      </Link> */}
       <MovieDetails
+        link={backLinkHref}
         title={movieItem.title}
-        src={`https://image.tmdb.org/t/p/w500${movieItem.poster_path}`}
+        src={
+          movieItem.poster_path
+            ? `https://image.tmdb.org/t/p/w500${movieItem.poster_path}`
+            : 'https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg'
+        }
         date={movieItem.release_date}
         rating={movieItem.vote_average}
         overview={movieItem.overview}
