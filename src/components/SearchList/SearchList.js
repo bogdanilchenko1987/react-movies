@@ -21,7 +21,7 @@ export const SearchList = ({ submit, movie, isLoading }) => {
         />
         <button type="submit">Search</button>
       </form>
-      {isLoading && isListEmpty && <b>LOADING...</b>}
+      {isLoading && <b>LOADING...</b>}
       {isListEmpty && (
         <MovieContainer>
           {movie.map(item => (

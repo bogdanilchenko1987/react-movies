@@ -22,6 +22,9 @@ export default function MoviesPage() {
   };
 
   useEffect(() => {
+    if (movieName === '') {
+      return;
+    }
     async function getMovies() {
       try {
         setIsLoading(true);

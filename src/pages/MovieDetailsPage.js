@@ -1,6 +1,6 @@
 import { MovieDetails } from 'components/MovieDetails/MovieDetails';
 import { fetchMoviesById } from 'components/api';
-import { useEffect, useRef, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 
 export default function MovieDetailsPage() {
@@ -17,7 +17,7 @@ export default function MovieDetailsPage() {
         const response = await fetchMoviesById(params.movieId);
         setMovieItem(response);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     }
 
@@ -38,8 +38,9 @@ export default function MovieDetailsPage() {
         rating={movieItem.vote_average}
         overview={movieItem.overview}
       />
-
-      <Outlet />
+      <Suspense fallback={<div>Loading SubPage...</div>}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 }
