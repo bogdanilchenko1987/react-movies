@@ -25,3 +25,13 @@ export default function HomePage() {
     </div>
   );
 }
+
+// return (
+//   <div>
+//     {moviesItem.length ? (
+//       <MoviesList movies={moviesItem} />
+//     ) : (
+//       <p>No movies found</p>
+//     )}
+//   </div>
+// );

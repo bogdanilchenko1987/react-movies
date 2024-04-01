@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 
 export default function CastPage() {
   const [movieItem, setMovieItem] = useState([]);
+
   const params = useParams();
 
   useEffect(() => {
@@ -13,18 +14,20 @@ export default function CastPage() {
         const response = await fetchMoviesCredits(params.movieId);
         setMovieItem(response.cast);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     }
 
     getMovies();
   }, [params.movieId]);
 
-
-
   return (
     <div>
-      <CastList cast={movieItem} />
+      {movieItem.length ? (
+        <CastList cast={movieItem} />
+      ) : (
+        <p>No Actors found</p>
+      )}
     </div>
   );
 }

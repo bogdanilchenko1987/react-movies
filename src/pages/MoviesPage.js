@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 export default function MoviesPage() {
-  const [movie, setmovie] = useState([]);
+  const [movie, setMovie] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [params, setParams] = useSearchParams();
 
@@ -29,7 +29,7 @@ export default function MoviesPage() {
       try {
         setIsLoading(true);
         const response = await fetchMoviesByQuery(movieName);
-        setmovie(response.results);
+        setMovie(response.results);
       } catch (error) {
         console.log(error);
       } finally {
@@ -52,3 +52,20 @@ export default function MoviesPage() {
     </div>
   );
 }
+
+// return (
+//   <div>
+//     {movie.length ? (
+//       <SearchList
+//         isLoading={isLoading}
+//         movie={movie}
+//         submit={e => {
+//           handleSubmit(e);
+//           resetInput(e);
+//         }}
+//       />
+//     ) : (
+//       <p>No movies found</p>
+//     )}
+//   </div>
+// );

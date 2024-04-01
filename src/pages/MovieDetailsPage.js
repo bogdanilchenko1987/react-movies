@@ -44,3 +44,27 @@ export default function MovieDetailsPage() {
     </div>
   );
 }
+
+// return (
+//   <div>
+//    {movieItem.length ? (
+//     <MovieDetails
+//       link={backLinkHref}
+//       title={movieItem.title}
+//       src={
+//         movieItem.poster_path
+//           ? `https://image.tmdb.org/t/p/w500${movieItem.poster_path}`
+//           : 'https://www.russorizio.com/wp-content/uploads/2016/07/ef3-placeholder-image.jpg'
+//       }
+//       date={movieItem.release_date}
+//       rating={movieItem.vote_average}
+//       overview={movieItem.overview}
+//     />
+//     <Suspense fallback={<div>Loading SubPage...</div>}>
+//       <Outlet />
+//     </Suspense>
+//            ) : (
+//        <p>No movies found</p>
+//     )}
+//   </div>
+// );
