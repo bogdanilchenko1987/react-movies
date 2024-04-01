@@ -1,4 +1,6 @@
 // import { useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import {
   BtnDetailsContainer,
   Img,
@@ -36,4 +38,13 @@ export const MovieDetails = ({ title, src, date, rating, overview, link }) => {
       </BtnDetailsContainer>
     </div>
   );
+};
+
+MovieDetails.propTypes = {
+  title: PropTypes.string,
+  src: PropTypes.string,
+  date: PropTypes.string,
+  rating: PropTypes.number,
+  overview: PropTypes.string,
+  link: PropTypes.object,
 };

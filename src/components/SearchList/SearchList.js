@@ -1,4 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import {
   MovieContainer,
   MovieImg,
@@ -50,4 +52,10 @@ export const SearchList = ({ submit, movie, isLoading }) => {
       {!isListEmpty && <p>Please type name on the movie</p>}
     </div>
   );
+};
+
+SearchList.propTypes = {
+  movie: PropTypes.array.isRequired,
+  submit: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };

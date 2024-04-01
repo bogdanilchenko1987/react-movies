@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import {
   ReviewsContainer,
   ReviewsHeader,
@@ -16,4 +18,8 @@ export const ReviewsList = ({ reviews }) => {
       ))}
     </ReviewsContainer>
   );
+};
+
+ReviewsList.propTypes = {
+  reviews: PropTypes.array.isRequired,
 };
