@@ -23,7 +23,7 @@ export default function ReviewsPage() {
       {movieItem.length ? (
         <ReviewsList reviews={movieItem} />
       ) : (
-        <p>No reviews found</p>
+        <p>No Reviews found</p>
       )}
     </div>
   );
