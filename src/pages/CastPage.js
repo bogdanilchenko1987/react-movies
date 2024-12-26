@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 
 export default function CastPage() {
   const [movieItem, setMovieItem] = useState([]);
-
+  const [isLoading, setIsLoading] = useState(false);
   const params = useParams();
 
   useEffect(() => {
@@ -15,6 +15,8 @@ export default function CastPage() {
         setMovieItem(response.cast);
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsLoading(true);
       }
     }
 
@@ -23,11 +25,8 @@ export default function CastPage() {
 
   return (
     <div>
-      {movieItem.length ? (
-        <CastList cast={movieItem} />
-      ) : (
-        <p>No Actors found</p>
-      )}
+      {Boolean(movieItem.length) && <CastList cast={movieItem} />}
+      {isLoading && <p>No Actors found</p>}
     </div>
   );
 }
